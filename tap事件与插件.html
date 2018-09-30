@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    在移动的点击事件:
+       PC端的click事件在移动端有延迟，大概200~300ms，移动端会优先处理触摸事件
+       在移动端ondbclick双击事件触发不了
+
+       在移动设备中click事件由touch事件中的touchstart与touchend结合封装成tap函数
+       触发顺序:
+              touchstart
+              touchend
+              mousedown
+              mouseup
+              click
+
+       singleTap: 单击
+       doubleTap: 双击
+       longTap:   长按
+
+       单击操作的特点:
+         1. 单击只要一个手指
+         2. 判断手指开始触摸和在手指松开的事件差异不能大于指定的值 300ms
+         3. 保证没有滑动操作，如果有抖动必须保证抖动的距离在指定范围内
+
+       封装tap函数:
+       function tap(element, callback){
+          <!--var element = document.querySelector("div");-->
+          判断元素是否存在
+          if(!element || typeof element != "object"){
+             return;
+          }
+          var startTime, startX, startY;
+
+          element.addEventListener("touchstart",function(e){
+          /*判断是否只有一根手指进行操作*/
+            if(e.targetTouches.length > 1){ //说明不止一个手指
+               return;
+            }
+            /*记录手指开始触摸的时间*/
+            startTime=Date.now();
+            /*记录当前手指的坐标*/
+            startX= e.targetTouches[0].clientX;
+            startY= e.targetTouches[0].clientY;
+            /*来做一些与事件相关的初始化操作*/
+          })
+
+         /*touchend：当手指松开时候触发，意味着当前元素上已经没有手指对象了,所以无法通过targetTouches来获取手指对象*/
+         element.addEventListener("touchend", function(e){
+           判断是否是一个手指操作
+           if(e.targetTouches.length > 1){
+              return;
+           }
+           判断时间差异
+           if(Date.now()-startTime > 150){
+              return;
+           }
+           判断松开手指时的坐标差距，手指离开无法用targetTouches
+           var endX = e.changedTouches[0].clientX;
+           var endY = e.changedTouches[0].clientY;
+           暂定距离差距顶为6
+           if(Math.abs(endX - startX) < 6 && Math.abs(endY - startY) < 6){
+                console.log("tap事件");
+
+                判断回调函数是否存在，存在则执行
+                callback && callback();
+           }
+         })
+
+       }
+
+    fastclick.js的使用:
+       zepto的tap事件有点透效应(现在改善很多，也可以使用)，即点上面盒子事件，盖子下面的盒子也会触发
+       /*1.不能点透
+       * 2.touch事件只有在移动端才能使用，在pc无效
+       *
+       * 需求：
+       * 1.在pc和移动端都能响应--click
+       * 2.不能点透--click
+       * 3.操作不能有延迟--touch*/
+
+       fastclick解决点透的问题和使用方法:
+           1. 引入fastclick.js文件
+           2. 使用fastclick:在pc端也能响应  解决延迟问题
+              fasle代表不使用事件捕获，使用事件冒泡
+              if ('addEventListener' in document) {
+                 document.addEventListener('DOMContentLoaded', function() {
+                    /!*参数可以是任意的dom元素，如果写document.body，说明会将document.body下面的所的元素都绑定fastclick*!/
+                    FastClick.attach(document.body);
+                 }, false);
+              }
+
+              $(function() {
+                 FastClick.attach(document.body);
+              });
+
+              fastclick用click方法
+              tap.addEventListener("click",function() {
+
+              }
+</body>
+</html>

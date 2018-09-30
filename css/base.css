@@ -1,0 +1,60 @@
+/*基本设置*/
+*,
+::after,
+::before {
+    margin: 0;
+    padding: 0;
+    /*移动端设置*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /*移动端轻触高亮处理*/
+    -webkit-tap-highlight-color: transparent;
+}
+html,
+body {
+    /*不设置主体盒子下不来*/
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-size: 15px;
+    font-family: "Microsoft Yahei", sans-serif;
+}
+ul,
+ol {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+input,
+textarea {
+    outline: none;
+    border: none;
+    resize: none;
+    /*移动端外观处理*/
+    -webkit-appearance: none;
+}
+.clearfix::after,
+.clearfix::before {
+    content: "";
+    display: block;
+    height: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.f_left {
+    float: left;
+}
+.f_right {
+    float: right;
+}
+/*字体图标*/
+[class^="icon_"],
+[class*=" icon_"]{
+    background: url("../images/sprites.png") no-repeat;
+    /*原图大小为400X400,缩小一半使图片不失真*/
+    background-size: 200px 200px;
+}
+

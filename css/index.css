@@ -1,0 +1,146 @@
+/*精灵图背景裁切4步*/
+/*box-sizing: border-box;*/
+/*padding: 10px;*/
+/*background-origin: content-box;*/
+/*background-clip: content-box;*/
+.container {
+    width: 100%;
+    height: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+.container .top {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+.top .topBox {
+    position: relative;
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    height: 45px;
+    background-color: #ccc;
+    border-bottom: 1px solid #ddd;
+    z-index: 5;
+}
+.topBox .icon_logo {
+    position: absolute;
+    top: 12px;
+    left: 18px;
+    width: 16px;
+    height: 30px;
+    /*背景裁切4步*/
+    /*box-sizing: border-box;*/
+    /*padding: 10px;*/
+    /*background-origin: content-box;*/
+    /*background-clip: content-box;*/
+}
+.topBox .icon_logo {
+    background-position: -20px 0px;
+}
+.topBox .form {
+    padding-left: 45px;
+    padding-right: 45px;
+    width: 100%;
+    overflow: hidden;
+}
+.topBox .form input {
+    width: 100%;
+    height: 35px;
+    margin-top: 5px;
+    border-radius: 15px;
+    padding-left: 25px;
+    background: url("../images/header-bg.png");
+}
+.topBox .icon_login {
+    position: absolute;
+    top: 12px;
+    right: 10px;
+    display: block;
+    width: 20px;
+    height: 25px;
+    background-position: -61px 0px;
+}
+/*主体部分*/
+.container .main {
+    width: 100%;
+    height: 100%;
+    padding-top: 45px;
+}
+.main .main_l {
+    width: 100px;
+    height: 100%;
+    float: left;
+    position: relative;
+    overflow: hidden;
+}
+.main .main_l ul {
+    width: 100%;
+    /*height: 100%;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.main .main_l li {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #968181;
+    background-color: #CFCFCF;
+    color: red;
+}
+.main .main_l li a {
+    color: #000;
+}
+.main .main_l .now {
+    background-color: #fff;
+    border-right: 0px solid #ccc;
+}
+.main .main_r {
+    height: 100%;
+    margin-left: 100px;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+}
+.main_r a img {
+    display: block;
+    width: 100%;
+}
+.main_r h5 {
+    width: 100%;
+    font-size: 15px;
+    margin-top: 10px;
+    color: #000;
+}
+.main_r ul {
+    width: 100%;
+    overflow: hidden;
+    flex: 1;
+}
+.main_r ul li {
+    width: 33.33%;
+    float: left;
+    padding: 10px 20px;
+}
+.main_r ul li a {
+    width: 100%;
+    display: block;
+}
+.main_r ul li a img {
+    display: block;
+    width: 100%;
+}
+.main_r ul li a span {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #00111b;
+    font-size: 12px;
+}
